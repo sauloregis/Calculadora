@@ -1,6 +1,6 @@
 object Form2: TForm2
-  Left = 448
-  Top = -674
+  Left = 621
+  Top = -790
   Anchors = [akTop]
   BiDiMode = bdRightToLeft
   BorderIcons = [biSystemMenu, biMinimize]
@@ -20,6 +20,7 @@ object Form2: TForm2
   OldCreateOrder = False
   ParentBiDiMode = False
   Position = poScreenCenter
+  OnKeyDown = FormKeyDown
   OnKeyPress = FormKeyPress
   OnShow = FormShow
   PixelsPerInch = 96

@@ -66,6 +66,9 @@ type
     procedure PnlEscuroClick(Sender: TObject);
     procedure MudarTema(IndiceTema: Integer);
     procedure SpdBtHistoricoClick(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+
 
   private
     procedure ApertarBotao(tecla: string);
@@ -236,7 +239,7 @@ begin
     case AnsiIndexStr(Oper, ['/', '*', '-', '+'])of
        0:
        begin
-         if (Var2 <> '0') then
+         if (StrToFloat(Var2) <> 0) then
           resultado := StrToFloat(Var1) / StrToFloat(Var2)
          else
          begin
@@ -288,7 +291,7 @@ begin
    case Key of
      #8:
      begin
-       if (Oper <> '') then
+       if (Oper <> '') and (Var2 <> '') then
        begin
          Var2 := Backspace(Var2);
        end
@@ -321,6 +324,7 @@ begin
      '+': PnlSomarClick(nil);
      ',': PnlVirgulaClick(nil);
    end;
+  
 end;
 
 function Tform2.Backspace (Numero: String): String;
@@ -357,7 +361,7 @@ begin
   end
   else
   begin
-    while (Contador > 28) do
+    while (Contador > 32) do
     begin
       PnlMenu.Height := Contador - 1;
       PnlMenu.Width := PnlMenu.Height;
@@ -508,6 +512,15 @@ begin
       Application.ProcessMessages;
     end;
   end
+end;
+
+
+
+procedure TForm2.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key in [VK_DOWN, VK_UP, VK_LEFT, VK_RIGHT] then
+  Key := 0;
 end;
 
 end.
